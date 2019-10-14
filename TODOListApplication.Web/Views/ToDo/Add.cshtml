@@ -1,0 +1,33 @@
+﻿@model LayoutModel<AddNewViewModel>
+@{
+    ViewBag.Title = "AddToDo";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-info">
+                    <h4 class="card-title">Add To-Do List</h4>
+                    <p class="card-category">New To-Do List Create </p>
+                </div>
+                <div class="card-body">
+                    <form action="@Url.Action("Add","ToDo")" method="post" >
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">To-Do List Name</label>
+                                    <input type="text" name="name" class="form-control">
+                                </div>
+                            </div>
+                           
+                        </div>
+                      
+                        <input type="submit" class="btn btn-default pull-right" value="Add To-Do List"/>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

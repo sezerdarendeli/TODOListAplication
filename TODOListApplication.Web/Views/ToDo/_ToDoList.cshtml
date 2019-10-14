@@ -1,0 +1,64 @@
+﻿@using TODOListApplication.Web.Models
+@model  ToDoViewModel
+@{
+    ViewBag.Title = "_ToDoList";
+    Layout = null;
+}
+
+
+<table class="table" id="toDoTable">
+    <tbody>
+        @if (Model.ToDoTaskList != null)
+        {
+            if (Model.ToDoTaskList.Count > 0)
+            {
+                foreach (var item in Model.ToDoTaskList)
+                {
+
+                    <tr>
+                        <td style="width: 10%">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    @if (item.Completed)
+                                    {
+                                        <input class="form-check-input" id="checkbox_@item.Id" value="@item.Id" type="checkbox" value="" checked>
+                                        <span class="form-check-sign">
+                                            <span class="check"></span>
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <input class="form-check-input" type="checkbox" value="">
+                                        <span class="form-check-sign">
+                                            <span class="check"></span>
+                                        </span>
+                                    }
+
+                                </label>
+                            </div>
+                        </td>
+                        <td colspan="4" style="width: 90%">@item.TaskName </td>
+                        <td class="td-actions text-right">
+                            <button type="button" rel="tooltip" title="Edit Task" data-toggle="modal" data-target="#editTaskExample" class="btn btn-primary btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                            </button>
+                            <button type="button" rel="tooltip" title="Remove" onclick="deleteTaskItem(@item.Id)" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                            </button>
+                        </td>
+                    </tr>
+
+                }
+
+            }
+            else
+            {
+                @Html.Raw("Dont have task item.")
+            }
+        }
+        else
+        {
+
+        }
+    </tbody>
+</table>

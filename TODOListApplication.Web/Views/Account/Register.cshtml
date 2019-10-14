@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutWithoutTemplate.cshtml";
+}
+
+
+<div class="page-header register-page header-filter" filter-color="black" style="background-image: url('/Content/img/cover.jpg')">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto ">
+                <form class="form" method="post" action="@Url.Action("Register","Account")">
+                    <div class="card card-login">
+                        <div class="card-header card-header-info text-center">
+                            <h4 class="card-title">Register</h4>
+
+                        </div>
+                        <div class="card-body ">
+                            <span class="bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">face</i>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="firstName" class="form-control" placeholder="First Name...">
+                                </div>
+                            </span>
+                            <span class="bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">email</i>
+                                        </span>
+                                    </div>
+                                    <input type="email" name="email" class="form-control" placeholder="Email...">
+                                </div>
+                            </span>
+                            <span class="bmd-form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="material-icons">lock_outline</i>
+                                        </span>
+                                    </div>
+                                    <input type="password" name="password" class="form-control" placeholder="Password...">
+                                </div>
+                            </span>
+                        </div>
+                        @if (ViewBag.successMessage == "Success")
+                        {
+                            <div class="card-footer justify-content-center">
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span>
+                                        <b> Success - </b> User profile created. Login for <a href="@Url.Action("Login","Account")">click</a>
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                        @if (ViewBag.successMessage == "Error")
+                        {
+                            <div class="card-footer justify-content-center">
+                                <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span>
+                                        <b> Error - </b>Please fill in the required fields."
+                                    </span>
+                                </div>
+                            </div>
+                        }
+
+
+
+                        <input type="submit" href="#pablo" class="btn btn-rose btn-link btn-lg" value="Get Started">
+                    </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <nav class="float-left">
+            <ul>
+                <li>
+
+                </li>
+                <li>
+                </li>
+                <li>
+
+                </li>
+                <li>
+
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright float-right">
+
+        </div>
+    </div>
+</footer>
+
+    </div>

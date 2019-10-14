@@ -1,0 +1,251 @@
+﻿@using TODOListApplication.Web.Models;
+@model TODOListApplication.Web.Models.LayoutModel<ToDoViewModel>
+@{
+    ViewBag.Title = "GetToDo";
+}
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-success">
+                    <div class="nav-tabs-navigation">
+                        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModalLong" style="float: right;">
+                            <i class="material-icons">
+                                add_circle_outline
+                            </i> New Task<div class="ripple-container"></div>
+                        </button>
+
+                        <div class="nav-tabs-wrapper">
+
+                            <span class="nav-tabs-title">Tasks:</span>
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active"  href="#allItem" onclick="filterPage('completedTask')"  data-toggle="tab">
+                                        <i class="material-icons">hourglass_empty</i> Open Tasks
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#completedTask" onclick="filterPage('completedTask')" data-toggle="tab">
+                                        <i class="material-icons">
+                                            check_circle_outline
+                                        </i> Completed Tasks
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#expiredTask" onclick="filterPage('expiredTask')" data-toggle="tab">
+                                        <i class="material-icons">
+                                            access_time
+                                        </i> Time Expired Taks
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="allItem">
+                            @Html.Partial("_ToDoList", Model.PageModel)
+                        </div>
+                        <div class="tab-pane" id="completedTask" >
+                            @Html.Partial("_ToDoList", Model.PageModel)
+                        </div>
+                        <div class="tab-pane" id="expiredTask">
+                            @Html.Partial("_ToDoList", Model.PageModel)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add New Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Task Name</label>
+                        <input type="hidden" id="todoId" value="@Model.PageModel.Id" />
+
+                        <input type="text" class="form-control" id="taskName" aria-describedby="emailHelp" placeholder="Example:Get your pants from the tailor at 8:00 on Sunday.">
+                    </div>
+                    <div class="form-group">
+                        <label>Task Description</label>
+
+                        <input type="text" class="form-control" id="taskDescription" aria-describedby="emailHelp" placeholder="Plase write description.">
+                    </div>
+                    <div class="form-group bmd-form-group is-filled">
+                        <input type="text" class="form-control bootstrap-datetimepicker-widget" id="datetimepicker1" value="11/06/2018">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" id="createTask">Create Task</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editTaskExample" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Task Name</label>
+                        <input type="hidden" id="todoId" value="@Model.PageModel.Id" />
+
+                        <input type="text" class="form-control" id="taskName" aria-describedby="emailHelp" placeholder="Example:Get your pants from the tailor at 8:00 on Sunday.">
+                    </div>
+                    <div class="form-group">
+                        <label>Task Description</label>
+
+                        <input type="text" class="form-control" id="taskDescription" aria-describedby="emailHelp" placeholder="Example:Get your pants from the tailor at 8:00 on Sunday.">
+                    </div>
+                    <div class="form-group bmd-form-group is-filled">
+                        <input type="text" class="form-control bootstrap-datetimepicker-widget" id="datetimepicker1" value="11/06/2018">
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" id="createTask">Create Task</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" type="text/css" />
+@*<script type="text/javascript" src="~/Scripts/bootstrap-datetimepicker.js"></script>*@
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+
+    function deleteTaskItem(id) {
+        $.ajax({
+            url: '@Url.Action("DeleteToDoTask", "ToDo")'+"?id="+id,
+            type: "POST",
+            //contentType: "application/json; charset=utf-8",
+            success: function(data) {
+                reloadPage();
+            },
+            error: function(error) {
+                alert("Error: " + error);
+            }
+        });
+    }
+
+
+    $("#createTask").click(function() {
+
+        var name = $('#taskName').text();
+        var todoId = $('#todoId').val();
+        var dateTimePicker = $('#datetimepicker1').val();
+        console.log(todoId);
+
+        $.ajax({
+            url: '@Url.Action("AddToDoTask", "ToDo")',
+            type: "POST",
+            data: {
+                'TaskName': $("#taskName").val(),
+                'ToDoId': $("#todoId").val(),
+                'ExpireDateTimeString': $('#datetimepicker1').val(),
+                'Description': $('#taskDescription').val()
+            },
+
+            success: function (data) {
+                console.log(data);
+                $('#exampleModalLong').modal('hide');
+                reloadPage();
+            },
+            error: function(error) {
+                alert("Error: " + error);
+            }
+        });
+    });
+
+
+ 
+    function reloadPage() {
+
+
+    $.ajax({
+        url: '@Url.Action("GetToDoPage", "ToDo",new {id=ViewBag.ToDoId})',
+        type: "POST",
+        //contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            console.log(data);
+            //var object = JSON.parse(data.d);
+            //console.log(object);
+
+            $('#allItem').html('');
+            $('#allItem').append(data);
+        },
+        error: function(error) {
+            alert("Error: " + error);
+        }
+    });
+
+    }
+
+
+    function filterPage(filterText) {
+    
+
+
+        $.ajax({
+            url: '@Url.Action("GetToDoPage", "ToDo")' + "?id=" + @ViewBag.ToDoId+"&filterText=" + filterText,
+            type: "POST",
+            //contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                console.log(data);
+                //var object = JSON.parse(data.d);
+                //console.log(object);
+
+                $('#'+filterText).html('');
+                $('#' + filterText).append(data);
+            },
+            error: function(error) {
+                alert("Error: " + error);
+            }
+        });
+
+    }
+
+    $(document).ready(function() {
+
+        $('.form-check-input').change(function() {
+            alert($(this).prop('checked'))
+        })
+    });
+
+</script>
