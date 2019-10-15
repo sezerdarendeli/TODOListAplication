@@ -101,7 +101,7 @@ namespace TODOListApplication.Web.Controllers
                 session.UserId = result.UserId;
                 this.Session["Session"] =(Session) session ;
                 WCFService.ToDoService toDoService = new WCFService.ToDoService();
-                var getAllToDo = toDoService.GetToDoList(new GetToDoListRq());
+                var getAllToDo = toDoService.GetToDoList(new GetToDoListRq { UserId = session.UserId});
                 var lastItem = 0;
                 if (getAllToDo.ToDoList.Count > 0)
                 {
